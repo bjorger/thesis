@@ -1,0 +1,4 @@
+RMSE: 0.003093084434560595
+RME: 0.0025650829753411978
+ Batch Size Train: 64
+ Batch Size Predict: 1
