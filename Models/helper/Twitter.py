@@ -1,8 +1,6 @@
 import snscrape.modules.twitter as sntwitter
 import pandas as pd
 from TweetNormalizer import normalizeTweet
-from Analzyer import group_tweets_by_timewindow
-
 import re
 from typing import Dict
 
@@ -58,4 +56,4 @@ def scrap_tweets(query: str, since: str, until: str, filename: str) -> pd.DataFr
     
     #group_tweets_by_timewindow(tweets_prepped, filename)
     
-scrap_tweets('loopring OR #lrc OR #loopring', '2021-10-30', '2021-10-31', 'test') 
+scrap_tweets('bitcoin OR #btc OR #bitcoin', '2021-10-30', '2022-10-31', 'bitcoin') 

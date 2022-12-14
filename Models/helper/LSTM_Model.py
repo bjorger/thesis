@@ -5,7 +5,6 @@ import numpy as np
 import pandas as pd
 from helper.DataScaler import DataScaler
 from keras import callbacks
-from keras import layers
 from keras.layers import concatenate
 import keras
 import matplotlib.pyplot as plt
@@ -17,19 +16,11 @@ earlystopping = callbacks.EarlyStopping(monitor ="loss",
                                         restore_best_weights = True)
 
 class LSTM():
-    model = None
-    inputs = []
-    x_train = []
-    x_test = []
-    y_train = None
-    y_test = None
-    predictions = None
-    scaler: MinMaxScaler
-    name = ''
-    mse = None
-    rmse = None
-
+    
     def __init__(self, inputs: List[DataScaler], scaler: MinMaxScaler,name: str) -> None:
+        self.x_train = []
+        self.x_test = []
+        
         self.scaler = scaler
         self.inputs = inputs
         self.y_train = inputs[0].y_train
@@ -39,15 +30,15 @@ class LSTM():
             self.x_train.append(input.x_train)
             self.x_test.append(input.x_test)
             
-    def create_model(self, batch_size, neurons, dropout):
+    def create_model(self, batch_size, neurons, dropout_rate):
         inputs = []
         for scaler in self.inputs:
-            inputs.append(layers.Input(batch_shape=(batch_size, scaler.x_train.shape[1], scaler.x_train.shape[2])))
+            inputs.append(keras.layers.Input(batch_shape=(batch_size, scaler.x_train.shape[1], scaler.x_train.shape[2])))
 
         input = concatenate(inputs)
-        lstm_layer1 = layers.LSTM(neurons, return_sequences=False, stateful=True)(input)
-        dropout_layer1 = layers.Dropout(dropout)(lstm_layer1)
-        output = layers.Dense(1)(dropout_layer1)
+        lstm_layer1 = keras.layers.LSTM(neurons, return_sequences=False, stateful=True)(input)
+        dropout_layer1 = keras.layers.Dropout(dropout_rate)(lstm_layer1)
+        output = keras.layers.Dense(1)(dropout_layer1)
         
         self.model = keras.models.Model(inputs=inputs, outputs=output)
         self.model.summary()
@@ -55,24 +46,48 @@ class LSTM():
     def create_layered_model(self, batch_size, dropout_rate: float, neurons: List[int]):
         inputs = []
         for scaler in self.inputs:
-            inputs.append(layers.Input(batch_shape=(batch_size, scaler.x_train.shape[1], scaler.x_train.shape[2])))           
+            inputs.append(keras.layers.Input(batch_shape=(batch_size, scaler.x_train.shape[1], scaler.x_train.shape[2])))           
 
         input = concatenate(inputs)
-        lstm_layer1 = layers.LSTM(neurons[0], return_sequences=True, stateful=True)(input)
-        dropout_layer1 = layers.Dropout(dropout_rate)(lstm_layer1)
-        lstm_layer2 = layers.LSTM(neurons[1], return_sequences=True, stateful=True)(dropout_layer1)
-        dropout_layer2 = layers.Dropout(dropout_rate)(lstm_layer2)
-        lstm_layer3 = layers.LSTM(neurons[2], return_sequences=True, stateful=True)(dropout_layer2)
-        dropout_layer3 = layers.Dropout(dropout_rate)(lstm_layer3)
-        lstm_layer4 = layers.LSTM(neurons[3], return_sequences=False, stateful=True)(dropout_layer3)
-        # Why flatten here?
-        # https://stackoverflow.com/questions/66952606/what-is-this-flatten-layer-doing-in-my-lstm
-        #flatten_layer = layers.Flatten()(lstm_layer4)
-        output = layers.Dense(1)(lstm_layer4)
+        layers: List[keras.layers] = []
+
+        for i in range(0, len(neurons)):
+            if i == 0:
+                """
+                First Layer
+                """
+                lstm_layer = keras.layers.LSTM(neurons[i], return_sequences=True, stateful=True)(input)
+            elif i == len(neurons) - 1:
+                """
+                Last Layer
+                """
+                lstm_layer = keras.layers.LSTM(neurons[i], return_sequences=False, stateful=True)(layers[i-1])
+                layers.append(lstm_layer)
+                break
+            else:
+                """
+                Layers in between
+                """
+                lstm_layer = keras.layers.LSTM(neurons[i], return_sequences=True, stateful=True)(layers[i-1])
+            dropout_layer = keras.layers.Dropout(dropout_rate)(lstm_layer)
+            layers.append(dropout_layer)
         
+        output = keras.layers.Dense(1)(layers.pop())
         self.model = keras.models.Model(inputs=inputs, outputs=output)
         self.model.summary()
-        
+        """
+        lstm_layer1 = keras.layers.LSTM(neurons[0], return_sequences=True, stateful=True)(input)
+        dropout_layer1 = keras.layers.Dropout(dropout_rate)(lstm_layer1)
+        lstm_layer2 = keras.layers.LSTM(neurons[1], return_sequences=True, stateful=True)(dropout_layer1)
+        dropout_layer2 = keras.layers.Dropout(dropout_rate)(lstm_layer2)
+        lstm_layer3 = keras.layers.LSTM(neurons[2], return_sequences=True, stateful=True)(dropout_layer2)
+        dropout_layer3 = keras.layers.Dropout(dropout_rate)(lstm_layer3)
+        lstm_layer4 = keras.layers.LSTM(neurons[3], return_sequences=False, stateful=True)(dropout_layer3)
+        # Why flatten here?
+        # https://stackoverflow.com/questions/66952606/what-is-this-flatten-layer-doing-in-my-lstm
+        # flatten_layer = layers.Flatten()(lstm_layer4)
+
+        """
 
                         
     def train_model(self, batch_size):

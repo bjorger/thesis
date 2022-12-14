@@ -45,7 +45,7 @@ res_df = pd.DataFrame(res_dict)
 
 print(len(res_df.index))
 """
-
+"""
 config = {
     "username" : "bjorgbirb",
     "client_id" : "-QdhQYEx5aOdyl-p-UfoVQ",
@@ -66,7 +66,7 @@ print(len(reddit.keys()))
 for k in reddit.keys():
     print(k)
 print(reddit['selftext'])
-
+"""
 """
 authors = reddit['author']
 authors.dropna(inplace=True)

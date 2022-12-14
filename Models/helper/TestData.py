@@ -24,10 +24,11 @@ class TestDataStacked(TestData):
     def __init__(self, name, dropout_rate, neurons, inputs: List[DataScaler]):
         super().__init__(name, dropout_rate, inputs)
         self.neurons = neurons
-        self.filename = '{}_{}_{}'.format(name, '_'.join(neurons), dropout_rate)
+        self.layers = len(neurons)
+        self.filename = 'Stacked_{}_{}_{}_{}'.format(name, '_'.join(map(str, neurons)), dropout_rate, self.layers)
         
     def generateResultString(self) -> str:
-        return 'Name: {}\nNeurons: {}\nDropout Rate: {}'.format(self.name, ', '.join(self.neurons), self.dropout_rate)
+        return 'Name: {}\nNeurons: {}\nDropout Rate: {}\nLayers: {}'.format(self.name, ', '.join(map(str, self.neurons)), self.dropout_rate, self.layers)
 
         
         
@@ -37,7 +38,7 @@ class TestDataSingle(TestData):
     def __init__(self, name, dropout_rate, neurons, inputs: List[DataScaler]):
         super().__init__(name, dropout_rate, inputs)
         self.neurons = neurons
-        self.filename = '{}_{}_{}'.format(name, neurons, dropout_rate)
+        self.filename = 'Single_{}_{}_{}'.format(name, neurons, dropout_rate)
 
         
     def generateResultString(self) -> str:

@@ -60,11 +60,11 @@ API_KEY= "E57C556D-3D28-4385-91DC-83E8417B0A26"
 
 #API_KEY = "C74EBB92-3668-43C2-83D5-7FE045DCB7C1"
 
-filename = './sentiment/data/lrc_1year_coin_api'
+filename = './sentiment/data/btc_1year_coin_api'
 start_date = date(2021, 10, 30)
 end_date = date(2022, 10, 31)
 
-url = 'https://rest.coinapi.io/v1/exchangerate/LRC/USD/history?period_id=30MIN&time_start={}&time_end={}&limit=100000'.format(start_date.strftime("%Y-%m-%dT%H:%M:%S"), end_date.strftime("%Y-%m-%dT%H:%M:%S"))
+url = 'https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=30MIN&time_start={}&time_end={}&limit=100000'.format(start_date.strftime("%Y-%m-%dT%H:%M:%S"), end_date.strftime("%Y-%m-%dT%H:%M:%S"))
 headers = {'X-CoinAPI-Key' : API_KEY}
 response = requests.get(url, headers=headers)
 print(response.status_code)
