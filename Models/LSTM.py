@@ -38,12 +38,13 @@ def train_lstm(
     redditSentimentDataScaler = DataScaler(dataset=reddit_sentiment_amount_comments_numeric, name='Reddit Sentiment', interval=interval)
     tweetSentimentDataScaler = DataScaler(dataset=tweets_sentiment_followers_numeric, name='Twitter Sentiment', interval=interval)
     fearAndGreedDataScaler = DataScaler(dataset=fear_and_greed_numeric, name='Fear and Greed Index', interval=interval)
-
+    
     """
     testCasesSingleLayer: List[TestDataSingle] = [
         TestDataSingle(name='Price', neurons=128, dropout_rate=0, inputs=[lrcPriceDataScaler], interval=interval),
         TestDataSingle(name='Price_Twitter', neurons=128, dropout_rate=0, inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], interval=interval),
     ]
+
     """
         
     testCasesMultiLayer: List[TestDataStacked] = [
@@ -54,7 +55,7 @@ def train_lstm(
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], 
             interval=interval,
             iteration=iteration), 
-        TestDataStacked(
+            TestDataStacked(
             name="Price_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
@@ -145,6 +146,7 @@ def train_lstm(
             inputs=[lrcPriceDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
             interval=interval,
             iteration=iteration),  
+        
     ]
     
 
@@ -183,16 +185,28 @@ def train_lstm(
         testData = testCasesMultiLayer[i]      
         evaluate_stacked_layer_model(testData)
 
-neurons = [[1,1,1], [2, 2, 2]]
-dropout_rate = [0, 0.1, 0.2]
-batch_size_train = 78
+neurons = [[512, 256, 128], [1024, 512, 256], [1024, 512], [512, 256], [256, 128]]
+batch_size_train = [78, 64, 61]
 batch_size_predict = 7
-interval = 14
+intervals = [14, 24, 7]
+iterations = 1
+dropout_rate = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
 
-for h in range(0, 20):
-    for i in range(0, len(neurons)):
-        for j in range(0, len(dropout_rate)):
-            train_lstm(78, 7, 14, h, neurons[i], dropout_rate[j])
+for iteration in range(0, iterations):
+    for z in range(0, len(intervals)):
+        for i in range(0, len(neurons)):
+            for j in range(0, len(dropout_rate)):
+                train_lstm(
+                    batch_size_train[z], 
+                    batch_size_predict, 
+                    intervals[z], 
+                    iteration, 
+                    neurons[i], 
+                    dropout_rate[j]
+                )
+                print("\n\n\n-----------------------------------------------------------")
+                print('Successfully completed iteration: {}'.format(iteration))
+                print("-----------------------------------------------------------\n\n\n")
 
 """
 find best model (single or layered)
