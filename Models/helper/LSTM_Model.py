@@ -82,10 +82,10 @@ class LSTM():
         # Look up best metrics for LSTM
         self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
         self.model.fit(self.x_train, self.y_train, batch_size=batch_size, epochs=100, callbacks=[earlystopping])
-        self.model.save_weights('results/trained_models/lstm_{}.h5'.format(self.name))
+        self.model.save_weights('results/LSTM/trained_models/lstm_{}.h5'.format(self.name))
         
     def predict(self, batch_size):
-        self.model.load_weights('results/trained_models/lstm_{}.h5'.format(self.name))
+        self.model.load_weights('results/LSTM/trained_models/lstm_{}.h5'.format(self.name))
         predictions = self.model.predict(self.x_test, batch_size=batch_size)
 
         self.predictions = self.scaler.inverse_transform(predictions)
@@ -104,7 +104,7 @@ class LSTM():
         plt.ylabel('Close Price USD ($)')
         plt.plot(validation[['price', 'Predictions']])
         plt.legend(['Val', 'Predictions'], loc='lower right')
-        plt.savefig('results/plots/{}.png'.format(self.name))
+        plt.savefig('results/LSTM/plots/{}.png'.format(self.name))
         
     def calculateMetrics(self):
         predictions = self.predictions

@@ -69,10 +69,10 @@ class TestDataStacked(TestData):
         
         result = result.append(entry, ignore_index=True)
 
-        if not os.path.isfile('results/results_stacked.csv'):
-            result.to_csv('results/results_stacked.csv', columns=self.columns)
+        if not os.path.isfile('results/LSTM/results_stacked.csv'):
+            result.to_csv('results/LSTM/results_stacked.csv', columns=self.columns)
         else:
-            result.to_csv('results/results_stacked.csv', mode='a', header=False)
+            result.to_csv('results/LSTM/results_stacked.csv', mode='a', header=False)
         
 class TestDataSingle(TestData):
     neurons: int
@@ -111,7 +111,7 @@ class TestDataSingle(TestData):
         
         result = result.append(entry, ignore_index=True)
 
-        if not os.path.isfile('results/results_single.csv'):
-            result.to_csv('results/results_single.csv', columns=self.columns)
+        if not os.path.isfile('results/LSTM/results_single.csv'):
+            result.to_csv('results/LSTM/results_single.csv', columns=self.columns)
         else:
-            result.to_csv('results/results_single.csv', mode='a', header=False)
+            result.to_csv('results/LSTM/results_single.csv', mode='a', header=False)
