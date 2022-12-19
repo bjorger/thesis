@@ -110,7 +110,7 @@ columns_to_delete = [
     "event_is_live", 
     "event_start"
 ]
-"""
+
 config = {
     "username" : "bjorgbirb",
     "client_id" : "-QdhQYEx5aOdyl-p-UfoVQ",
@@ -133,7 +133,7 @@ submissions_stored = []
 
 submissions = pd.DataFrame()
 for query in queries:
-    api_request_generator = api.search_submissions(q=query, limit=limit, after=start_epoch, before=end_epoch)
+    api_request_generator = api.search_submissions(q=query, after=start_epoch, before=end_epoch)
     # https://melaniewalsh.github.io/Intro-Cultural-Analytics/04-Data-Collection/14-Reddit-Data.html
     subs = []
     for submission in api_request_generator:
@@ -151,12 +151,7 @@ for query in queries:
 
 submissions.to_csv('./data/{}.csv'.format(filename), sep='\t')
 submissions.to_json('./data/{}.json'.format(filename), orient='records')
-"""
-"""
-reddit = pd.read_json('sentiment/data/final/reddit_lrc_1year.json', orient="records")
-"""
 
-"""
 for key in columns_to_delete:
     del reddit[key]
 
@@ -167,26 +162,9 @@ for _, post in reddit.iterrows():
         post['selftext'] = re.sub("#[A-Za-z0-9_]+","", post['selftext'])
         post['selftext'] = normalizeTweet(post['selftext'])
 
-reddit.to_csv('sentiment/data/test_data/reddit.csv', sep=',')
-reddit.to_json('sentiment/data/test_data/reddit.json', orient='records')
-"""
-
-reddit = pd.read_json('sentiment/data/test_data/reddit.json', orient="records")
-"""
-reddit_cleaned = []
-for _, post in reddit.iterrows():
-    if post['selftext']:
-        post['selftext'] = post['selftext'].replace('\n', '')
-        post['selftext'] = re.sub("@[A-Za-z0-9_]+","", post['selftext'])
-        post['selftext'] = re.sub("#[A-Za-z0-9_]+","", post['selftext'])
-        post['selftext'] = normalizeTweet(post['selftext'])
-    reddit_cleaned.append(post)
-"""
 reddit_cleaned = []
 for _, post in reddit.iterrows():
     post['date'] = pd.to_datetime(post['created_utc'], unit="s")
     reddit_cleaned.append(post)
 reddit = pd.DataFrame(reddit_cleaned)
 reddit = reddit.iloc[::-1]
-reddit.to_csv('sentiment/data/test_data/reddit.csv', sep='\t')
-reddit.to_json('sentiment/data/test_data/reddit.json', orient='records')

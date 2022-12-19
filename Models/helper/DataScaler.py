@@ -19,8 +19,9 @@ class DataScaler():
     interval = 24
     name = ''
     
-    def __init__(self, dataset: pd.Series, name: str) -> None:
+    def __init__(self, dataset: pd.Series, name: str, interval = 24) -> None:
         self.name = name
+        self.interval = interval
         self.scaler = MinMaxScaler(feature_range=(0,1))
         self.train_data_len = math.ceil(len(dataset.values)* 0.8)
         scaled_data = self.scaler.fit_transform(dataset.values.reshape(-1,1))

@@ -1,5 +1,3 @@
-import re
-import string
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import pandas as pd
 from datetime import timedelta, datetime
@@ -92,7 +90,6 @@ def group_by_timewindow(posts: pd.DataFrame, filename: str) -> pd.DataFrame:
                     current_posts = posts_day.between_time(start, end)
                     results_post = []
                     results_post_likes = []
-                    results_post_amount_comments_likes = []
                     results_post_amount_comments = []
                     posts_in_timeframe = []
                     
@@ -104,22 +101,18 @@ def group_by_timewindow(posts: pd.DataFrame, filename: str) -> pd.DataFrame:
                         if not post['selftext']:
                             text = post['title']
                             
-                        sentiment_result_amount_comments_likes = calculate_post_sentiment_with_likes_and_follower(text, post['score'], post['num_comments'])
                         sentiment_result_likes = calculate_post_sentiment_with_likes(text, int(post['score']))
                         sentiment_result = calculate_sentiment(text)
                         sentiment_result_amount_comments = calculate_post_sentiment_with_likes(text, post['num_comments'])
-                        
+                             
                         results_post.append(sentiment_result)
                         results_post_likes.append(sentiment_result_likes)
-                        results_post_amount_comments_likes.append(sentiment_result_amount_comments_likes)
                         results_post_amount_comments.append(sentiment_result_amount_comments)
-                        
                         posts_in_timeframe.append(post_id)
                     
                     sentiment = 0
                     sentiment_likes = 0
                     sentiment_amount_comments = 0
-                    sentiment_amount_comments_likes = 0
                     
                     timewindow = '{}-{}-{} {}-{}'.format(day, month, year, start, end)
 
@@ -127,14 +120,12 @@ def group_by_timewindow(posts: pd.DataFrame, filename: str) -> pd.DataFrame:
                         sentiment = sum(results_post) / len(results_post)
                         sentiment_likes = sum(results_post_likes) / len(results_post)
                         sentiment_amount_comments = sum(results_post_amount_comments) / len(results_post)
-                        sentiment_amount_comments_likes = sum(results_post_amount_comments_likes) / len(results_post)
-                        
+
                     entry = {
                         'Timewindow': timewindow,
                         'Sentiment': sentiment,
                         'Sentiment_Likes': sentiment_likes,
                         'Sentiment_amount_comments': sentiment_amount_comments,
-                        'Sentiment_amount_comments_Likes': sentiment_amount_comments_likes,
                         'Volume': len(current_posts),
                         'postIds': ','.join(posts_in_timeframe),
                     }
@@ -163,4 +154,4 @@ posts_prepped.to_json('data/lrc_1year_posts_with_amount_comments.json', orient="
 
 posts = pd.read_json('data/test_data/reddit.json', orient="records")
 
-group_by_timewindow(posts, "lrc_1year_sentiment_reddit")
+group_by_timewindow(posts, "lrc_1year_sentiment_reddit_likes_greater_one")

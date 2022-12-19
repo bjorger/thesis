@@ -10,6 +10,7 @@ import keras
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
 from helper.TestData import TestData
+import os
 
 earlystopping = callbacks.EarlyStopping(monitor ="loss", 
                                         mode ="min", patience = 3, 
@@ -33,7 +34,8 @@ class LSTM():
     def create_model(self, batch_size, neurons, dropout_rate):
         inputs = []
         for scaler in self.inputs:
-            inputs.append(keras.layers.Input(batch_shape=(batch_size, scaler.x_train.shape[1], scaler.x_train.shape[2])))
+            batch_shape=(batch_size, scaler.x_train.shape[1], scaler.x_train.shape[2])
+            inputs.append(keras.layers.Input(batch_shape=batch_shape))
 
         input = concatenate(inputs)
         lstm_layer1 = keras.layers.LSTM(neurons, return_sequences=False, stateful=True)(input)
@@ -75,20 +77,6 @@ class LSTM():
         output = keras.layers.Dense(1)(layers.pop())
         self.model = keras.models.Model(inputs=inputs, outputs=output)
         self.model.summary()
-        """
-        lstm_layer1 = keras.layers.LSTM(neurons[0], return_sequences=True, stateful=True)(input)
-        dropout_layer1 = keras.layers.Dropout(dropout_rate)(lstm_layer1)
-        lstm_layer2 = keras.layers.LSTM(neurons[1], return_sequences=True, stateful=True)(dropout_layer1)
-        dropout_layer2 = keras.layers.Dropout(dropout_rate)(lstm_layer2)
-        lstm_layer3 = keras.layers.LSTM(neurons[2], return_sequences=True, stateful=True)(dropout_layer2)
-        dropout_layer3 = keras.layers.Dropout(dropout_rate)(lstm_layer3)
-        lstm_layer4 = keras.layers.LSTM(neurons[3], return_sequences=False, stateful=True)(dropout_layer3)
-        # Why flatten here?
-        # https://stackoverflow.com/questions/66952606/what-is-this-flatten-layer-doing-in-my-lstm
-        # flatten_layer = layers.Flatten()(lstm_layer4)
-
-        """
-
                         
     def train_model(self, batch_size):
         # Look up best metrics for LSTM
@@ -102,7 +90,6 @@ class LSTM():
 
         self.predictions = self.scaler.inverse_transform(predictions)
         self.predictions = self.predictions.flatten()
-            
             
         self.calculateMetrics()
     
@@ -123,11 +110,4 @@ class LSTM():
         predictions = self.predictions
         self.mse = np.mean(np.abs(self.y_test - predictions))
         self.rmse = np.sqrt(mean_squared_error(self.y_test, predictions))
-        
-    def printResult(self, input_data: TestData):
-        result = input_data.generateResultString() + '\nRMSE: {}\nMSE: {}'.format(self.rmse, self.mse)
-        
-        with open('results/{}.txt'.format(self.name), 'w') as f:
-            f.write(result)
-        
-        print(result)
+    

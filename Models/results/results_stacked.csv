@@ -1,0 +1,20 @@
+,name,features,neurons,layers,dropout_rate,interval,rmse,mse
+0,Price,Loopring Price Snapshots,"512, 256, 128",3,0,24,0.004191671487033712,0.0036530068047208285
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0,24,0.007614912897056466,0.007179467598606638
+0,Price,Loopring Price Snapshots,"512, 256, 128",3,0,14,0.003475030216645976,0.0029141097054514353
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0,14,0.002961009874215429,0.002311138913888479
+0,Price,Loopring Price Snapshots,"512, 256, 128",3,0,7,0.004050744164006092,0.003160653548940075
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0,7,0.012111577132406447,0.011640175377777671
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","1024, 512, 256",3,0,14,0.003176415047523317,0.0025119579099123195
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0,14,0.011847355417010432,0.011647082956655518
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.1,14,0.021380879655136884,0.021046782756648195
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.2,14,0.00941741690276649,0.008445251031791199
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.3,14,0.011101589709881697,0.01074972181751482
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.2,14,0.004930578935011149,0.0042839064756145535
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","512, 256, 128",3,0.2,14,0.014800195597611174,0.014533862345884729
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","512, 256, 128",3,0.2,14,0.00938370186007764,0.008838441568687658
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.2,14,0.04021280291173866,0.040126279823484254
+0,Price_Twitter_Likes,"Loopring Price Snapshots, Twitter Sentiment Likes","512, 256, 128",3,0.2,14,0.005969456140780599,0.004901231020549906
+0,Price_Twitter_Follower,"Loopring Price Snapshots, Twitter Sentiment Followers","512, 256, 128",3,0.2,14,0.004188977584473946,0.0035051294000975415
+0,Price_Reddit_Likes,"Loopring Price Snapshots, Reddit Sentiment Amount Likes","512, 256, 128",3,0.2,14,0.01008973467822002,0.009630802153977954
+0,Price_Reddit_Comments,"Loopring Price Snapshots, Reddit Sentiment Amount Comments","512, 256, 128",3,0.2,14,0.014556378723197795,0.014311597528339935

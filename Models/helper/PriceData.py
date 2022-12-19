@@ -1,4 +1,3 @@
-from MongoDB import MongoDB
 import pandas as pd
 import requests
 from datetime import date, timedelta
