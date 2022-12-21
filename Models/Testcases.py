@@ -19,129 +19,128 @@ tweets_sentiment_followers_numeric = pd.to_numeric(tweets['Sentiment_Followers']
 tweets_sentiment_likes_numeric = pd.to_numeric(tweets['Sentiment_Likes'])
 fear_and_greed_numeric = pd.to_numeric(fear_and_greed['Value'])
 
-def create_test_cases(neurons, dropout_rate, interval, iteration):
-    lrcPriceDataScaler = DataScaler(dataset=lrc_price_data_numeric, name='Loopring Price Snapshots', interval=interval)
-    btcPriceDataScaler = DataScaler(dataset=btc_price_data_numeric, name='Bitcoin Price Snapshots', interval=interval)
-    redditSentimentDataScaler = DataScaler(dataset=reddit_sentiment_amount_comments_numeric, name='Reddit Sentiment', interval=interval)
-    tweetSentimentDataScaler = DataScaler(dataset=tweets_sentiment_followers_numeric, name='Twitter Sentiment', interval=interval)
-    fearAndGreedDataScaler = DataScaler(dataset=fear_and_greed_numeric, name='Fear and Greed Index', interval=interval)
-    
+lrcPriceDataScaler = DataScaler(dataset=lrc_price_data_numeric, name='Loopring Price Snapshots')
+btcPriceDataScaler = DataScaler(dataset=btc_price_data_numeric, name='Bitcoin Price Snapshots')
+redditSentimentDataScaler = DataScaler(dataset=reddit_sentiment_amount_comments_numeric, name='Reddit Sentiment')
+tweetSentimentDataScaler = DataScaler(dataset=tweets_sentiment_followers_numeric, name='Twitter Sentiment')
+fearAndGreedDataScaler = DataScaler(dataset=fear_and_greed_numeric, name='Fear and Greed Index')
+
+def create_test_cases_stacked(neurons, iteration):
+    dropout_rate = 0.05    
+
     testCasesMultiLayer: List[TestDataStacked] = [
+        TestDataStacked(
+            name="Price", 
+            neurons=neurons,
+            dropout_rate=dropout_rate, 
+            inputs=[lrcPriceDataScaler], 
+            iteration=iteration), 
         TestDataStacked(
             name="Price_Twitter", 
             neurons=neurons,
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], 
-            interval=interval,
             iteration=iteration), 
-            TestDataStacked(
+        TestDataStacked(
             name="Price_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataStacked(
             name="Price_FNG", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataStacked(
             name="Price_Reddit", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler], 
-            interval=interval,
             iteration=iteration),     
         TestDataStacked(
             name="Price_Twitter_Reddit", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataStacked(
             name="Price_Twitter_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataStacked(
             name="Price_Twitter_FNG", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataStacked(
             name="Price_Twitter_Reddit_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataStacked(
             name="Price_Twitter_Reddit_FNG", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration),       
         TestDataStacked(
             name="Price_Twitter_Reddit_FNG_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
+            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler,btcPriceDataScaler],      
             iteration=iteration),  
         TestDataStacked(
             name="Price_Reddit_FNG_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
+            inputs=[lrcPriceDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler],   
             iteration=iteration),
         TestDataStacked(
             name="Price_Reddit_FNG", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, redditSentimentDataScaler], 
-            interval=interval,
+            inputs=[lrcPriceDataScaler, redditSentimentDataScaler],   
             iteration=iteration), 
         TestDataStacked(
             name="Price_Reddit_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration), 
         TestDataStacked(
             name="Price_FNG_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
     ]
     
     testCasesBidirectional: List[TestDataStacked] = [
         TestDataStacked(
+            name="Price", 
+            neurons=neurons,
+            dropout_rate=dropout_rate, 
+            inputs=[lrcPriceDataScaler], 
+            iteration=iteration,
+            bidirectional=True), 
+        TestDataStacked(
             name="Price_Twitter", 
             neurons=neurons,
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True), 
-            TestDataStacked(
+        TestDataStacked(
             name="Price_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),  
         TestDataStacked(
@@ -149,7 +148,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),  
         TestDataStacked(
@@ -157,7 +155,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),     
         TestDataStacked(
@@ -165,7 +162,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),  
         TestDataStacked(
@@ -173,7 +169,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),  
         TestDataStacked(
@@ -181,7 +176,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),  
         TestDataStacked(
@@ -189,7 +183,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),  
         TestDataStacked(
@@ -197,7 +190,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),       
         TestDataStacked(
@@ -205,7 +197,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),  
         TestDataStacked(
@@ -213,7 +204,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),
         TestDataStacked(
@@ -221,7 +211,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True), 
         TestDataStacked(
@@ -229,7 +218,6 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True), 
         TestDataStacked(
@@ -237,117 +225,107 @@ def create_test_cases(neurons, dropout_rate, interval, iteration):
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration,
             bidirectional=True),  
     ]
     
-    testCasesSingleLayer: List[TestDataSingle] = [
-        TestDataSingle(name='Price', neurons=128, dropout_rate=dropout_rate, inputs=[lrcPriceDataScaler], interval=interval),
-        TestDataSingle(name='Price_Twitter', neurons=128, dropout_rate=0, inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], interval=interval),
-    ]
+    return testCasesMultiLayer, testCasesBidirectional
     
+def create_test_cases_single(iteration):
+    dropout_rate = 0.05    
     neurons = 128
     
     testCasesSingleLayer: List[TestDataSingle] = [
+        TestDataSingle(
+            name="Price", 
+            neurons=neurons,
+            dropout_rate=dropout_rate, 
+            inputs=[lrcPriceDataScaler], 
+            iteration=iteration), 
         TestDataSingle(
             name="Price_Twitter", 
             neurons=neurons,
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], 
-            interval=interval,
             iteration=iteration), 
-        TestDataStacked(
+        TestDataSingle(
             name="Price_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataSingle(
             name="Price_FNG", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataSingle(
             name="Price_Reddit", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler], 
-            interval=interval,
             iteration=iteration),     
         TestDataSingle(
             name="Price_Twitter_Reddit", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataSingle(
             name="Price_Twitter_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataSingle(
             name="Price_Twitter_FNG", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataSingle(
             name="Price_Twitter_Reddit_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataSingle(
             name="Price_Twitter_Reddit_FNG", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
             iteration=iteration),       
         TestDataSingle(
             name="Price_Twitter_Reddit_FNG_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
         TestDataSingle(
             name="Price_Reddit_FNG_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),
         TestDataSingle(
             name="Price_Reddit_FNG", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler], 
-            interval=interval,
             iteration=iteration), 
         TestDataSingle(
             name="Price_Reddit_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, redditSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration), 
         TestDataSingle(
             name="Price_FNG_BTC", 
             neurons=neurons, 
             dropout_rate=dropout_rate, 
             inputs=[lrcPriceDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
             iteration=iteration),  
     ]
     
-    return testCasesSingleLayer, testCasesMultiLayer, testCasesBidirectional
+    return testCasesSingleLayer

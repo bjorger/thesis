@@ -7,50 +7,39 @@ class TestData():
     filename: str
     dropout_rate: float
     inputs: List[DataScaler]
-    interval: int
     iteration: int
     
-    def __init__(self, name, dropout_rate, inputs: List[DataScaler], interval: int, iteration: int):
+    def __init__(self, name, dropout_rate, inputs: List[DataScaler],iteration: int):
         self.name = name
-        self.interval = interval
         self.dropout_rate = dropout_rate
         self.inputs = inputs
         self.iteration = iteration
         
-    def generateResultString(self) -> str:
-        pass
-    
-    
     def saveResults(self, rmse: float, mse: float, dropout_rate: float) -> None:
         pass
     
 class TestDataStacked(TestData):
     neurons: List[int]
-    columns = ['name', 'features', 'neurons', 'layers', 'dropout_rate', 'interval', 'rmse', 'mse', 'architecture']
+    columns = ['name', 'features', 'neurons', 'layers', 'dropout_rate', 'rmse', 'mse', 'architecture']
     
     def __init__(self,
                 name, 
                 dropout_rate, 
                 neurons, 
                 inputs: List[DataScaler], 
-                interval: int, 
                 iteration: int,
                 bidirectional: bool = False):
-        super().__init__(name, dropout_rate, inputs, interval, iteration)
+        super().__init__(name, dropout_rate, inputs, iteration)
         self.neurons = neurons
         self.layers = len(neurons)
         self.bidirectional = bidirectional
         self.prefix = 'bidirectional' if self.bidirectional else 'stacked'
-        self.filename = '{}_{}_{}_{}_{}_{}_{}'.format(
+        self.filename = '{}_{}_{}_{}_{}_{}'.format(
             self.prefix, name, 
             '_'.join(map(str, neurons)), 
             dropout_rate, 
             self.layers, 
-            interval, 
             self.iteration)
-        
-    def generateResultString(self) -> str:
-        return 'Name: {}\nNeurons: {}\nDropout Rate: {}\nLayers: {}'.format(self.name, ', '.join(map(str, self.neurons)), self.dropout_rate, self.layers)
 
     def saveResults(self, rmse: float, mse: float) -> None:
         result = pd.DataFrame(columns=self.columns)
@@ -77,7 +66,6 @@ class TestDataStacked(TestData):
             'neurons': neurons,
             'layers': layers,
             'dropout_rate': self.dropout_rate,
-            'interval': self.interval,
             'rmse': rmse,
             'mse': mse,
             'architecture': self.prefix
@@ -95,7 +83,7 @@ class TestDataStacked(TestData):
         
 class TestDataSingle(TestData):
     neurons: int
-    columns = ['name', 'features', 'neurons', 'dropout_rate', 'interval', 'rmse', 'mse']
+    columns = ['name', 'features', 'neurons', 'dropout_rate', 'rmse', 'mse']
     
     def __init__(
         self, 
@@ -103,16 +91,11 @@ class TestDataSingle(TestData):
         dropout_rate, 
         neurons, 
         inputs: List[DataScaler], 
-        interval: int,
         iteration: int):
-        super().__init__(name, dropout_rate, inputs, interval, iteration)
+        super().__init__(name, dropout_rate, inputs, iteration)
         self.neurons = neurons
-        self.filename = 'Single_{}_{}_{}_{}'.format(name, neurons, dropout_rate, interval)
+        self.filename = 'Single_{}_{}_{}_{}'.format(name, neurons, dropout_rate, iteration)
 
-        
-    def generateResultString(self) -> str:
-        return 'Name: {}\nNeurons: {}\nDropout Rate: {}'.format(self.name, self.neurons, self.dropout_rate)
-    
     # add interval & patience
     def saveResults(self, rmse: float, mse: float) -> None:
         result = pd.DataFrame(columns=self.columns)
@@ -130,7 +113,6 @@ class TestDataSingle(TestData):
             'features': feature_list,
             'neurons': str(neurons),
             'dropout_rate': self.dropout_rate,
-            'interval': self.interval,
             'rmse': rmse,
             'mse': mse
         }

@@ -1,0 +1,7 @@
+,name,features,neurons,dropout_rate,rmse,mse
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment",,0.05,0.00700004286466248,0.006398295663061929
+0,Price_Twitter_Followers,"Loopring Price Snapshots, Twitter Sentiment Followers",,0.05,0.0035872409903522536,0.0027852066706308444
+0,Price_Twitter_Followers,"Loopring Price Snapshots, Twitter Sentiment Likes",,0.05,0.0033136329440469005,0.0025437207315149217
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment",,0.05,0.004119776255501399,0.00357561685400808
+0,Price_Reddit_Likes,"Loopring Price Snapshots, Reddit Sentiment Likes",,0.05,0.010833477186876056,0.01059678460010175
+0,Price_Reddit_Comments,"Loopring Price Snapshots, Reddit Sentiment Comments",,0.05,0.005064105145048908,0.004657484994056972

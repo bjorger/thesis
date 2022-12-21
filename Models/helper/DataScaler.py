@@ -16,10 +16,10 @@ class DataScaler():
     y_train = []
     x_test = None
     y_test = None
-    interval = 24
+    interval = 14
     name = ''
     
-    def __init__(self, dataset: pd.Series, name: str, interval = 24) -> None:
+    def __init__(self, dataset: pd.Series, name: str, interval = 14) -> None:
         self.name = name
         self.interval = interval
         self.scaler = MinMaxScaler(feature_range=(0,1))
