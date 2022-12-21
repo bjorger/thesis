@@ -26,13 +26,28 @@ class TestData():
     
 class TestDataStacked(TestData):
     neurons: List[int]
-    columns = ['name', 'features', 'neurons', 'layers', 'dropout_rate', 'interval', 'rmse', 'mse']
+    columns = ['name', 'features', 'neurons', 'layers', 'dropout_rate', 'interval', 'rmse', 'mse', 'architecture']
     
-    def __init__(self, name, dropout_rate, neurons, inputs: List[DataScaler], interval: int, iteration: int):
+    def __init__(self,
+                name, 
+                dropout_rate, 
+                neurons, 
+                inputs: List[DataScaler], 
+                interval: int, 
+                iteration: int,
+                bidirectional: bool = False):
         super().__init__(name, dropout_rate, inputs, interval, iteration)
         self.neurons = neurons
         self.layers = len(neurons)
-        self.filename = 'Stacked_{}_{}_{}_{}_{}_{}'.format(name, '_'.join(map(str, neurons)), dropout_rate, self.layers, interval, self.iteration)
+        self.bidirectional = bidirectional
+        self.prefix = 'bidirectional' if self.bidirectional else 'stacked'
+        self.filename = '{}_{}_{}_{}_{}_{}_{}'.format(
+            self.prefix, name, 
+            '_'.join(map(str, neurons)), 
+            dropout_rate, 
+            self.layers, 
+            interval, 
+            self.iteration)
         
     def generateResultString(self) -> str:
         return 'Name: {}\nNeurons: {}\nDropout Rate: {}\nLayers: {}'.format(self.name, ', '.join(map(str, self.neurons)), self.dropout_rate, self.layers)
@@ -64,22 +79,33 @@ class TestDataStacked(TestData):
             'dropout_rate': self.dropout_rate,
             'interval': self.interval,
             'rmse': rmse,
-            'mse': mse
+            'mse': mse,
+            'architecture': self.prefix
         }
         
         result = result.append(entry, ignore_index=True)
+        
+        file = 'results_bidirectional' if self.bidirectional else 'results_stacked'
+        path = 'results/LSTM/{}.csv'.format(file)
 
-        if not os.path.isfile('results/LSTM/results_stacked.csv'):
-            result.to_csv('results/LSTM/results_stacked.csv', columns=self.columns)
+        if not os.path.isfile(path):
+            result.to_csv(path, columns=self.columns)
         else:
-            result.to_csv('results/LSTM/results_stacked.csv', mode='a', header=False)
+            result.to_csv(path, mode='a', header=False)
         
 class TestDataSingle(TestData):
     neurons: int
     columns = ['name', 'features', 'neurons', 'dropout_rate', 'interval', 'rmse', 'mse']
-
-    def __init__(self, name, dropout_rate, neurons, inputs: List[DataScaler], interval: int):
-        super().__init__(name, dropout_rate, inputs, interval)
+    
+    def __init__(
+        self, 
+        name, 
+        dropout_rate, 
+        neurons, 
+        inputs: List[DataScaler], 
+        interval: int,
+        iteration: int):
+        super().__init__(name, dropout_rate, inputs, interval, iteration)
         self.neurons = neurons
         self.filename = 'Single_{}_{}_{}_{}'.format(name, neurons, dropout_rate, interval)
 

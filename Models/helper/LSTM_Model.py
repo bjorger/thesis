@@ -76,6 +76,39 @@ class LSTM():
         output = keras.layers.Dense(1)(layers.pop())
         self.model = keras.models.Model(inputs=inputs, outputs=output)
         self.model.summary()
+        
+    def create_bidirectional_model(self, batch_size, dropout_rate: float, neurons: List[int]):
+        inputs = []
+        for scaler in self.inputs:
+            inputs.append(keras.layers.Input(batch_shape=(batch_size, scaler.x_train.shape[1], scaler.x_train.shape[2])))           
+
+        input = concatenate(inputs)
+        layers: List[keras.layers] = []
+
+        for i in range(0, len(neurons)):
+            if i == 0:
+                """
+                First Layer
+                """
+                lstm_layer = keras.layers.Bidirectional(keras.layers.LSTM(neurons[i], return_sequences=True, stateful=True))(input)
+            elif i == len(neurons) - 1:
+                """
+                Last Layer
+                """
+                lstm_layer = keras.layers.Bidirectional(keras.layers.LSTM(neurons[i], return_sequences=False, stateful=True)(layers[i-1]))
+                layers.append(lstm_layer)
+                break
+            else:
+                """
+                Layers in between
+                """
+                lstm_layer = keras.layers.Bidirectional(keras.layers.LSTM(neurons[i], return_sequences=True, stateful=True)(layers[i-1]))
+            dropout_layer = keras.layers.Dropout(dropout_rate)(lstm_layer)
+            layers.append(dropout_layer)
+        
+        output = keras.layers.Dense(1)(layers.pop())
+        self.model = keras.models.Model(inputs=inputs, outputs=output)
+        self.model.summary()
                         
     def train_model(self, batch_size):
         # Look up best metrics for LSTM

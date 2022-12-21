@@ -1,7 +1,0 @@
-,name,features,neurons,dropout_rate,interval,rmse,mse
-0,Price,Loopring Price Snapshots,,0,24,0.009603880092472587,0.009401441007491892
-0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment",,0,24,0.003956195987610552,0.003265910797657069
-0,Price,Loopring Price Snapshots,,0,14,0.0023650430667199324,0.0015523249920098812
-0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment",,0,14,0.01958813520914524,0.019399563575871182
-0,Price,Loopring Price Snapshots,,0,7,0.0022391782733306212,0.0016226423837650415
-0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment",,0,7,0.004657418202156001,0.003835689513095063

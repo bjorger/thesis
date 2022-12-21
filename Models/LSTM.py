@@ -3,25 +3,7 @@ from helper.DataScaler import DataScaler
 from helper.LSTM_Model import LSTM
 from typing import List
 from helper.TestData import TestDataSingle, TestDataStacked
-
-"""
-Data
-"""
-lrc_pricedata = pd.read_csv('test_data/lrc_1year_price_snapshot.csv', sep=',')
-btc_pricedata = pd.read_csv('test_data/btc_1year_coin_api.csv', sep=',')
-tweets = pd.read_csv('test_data/lrc_1year_sentiment_twitter.csv', sep=',')
-reddit = pd.read_csv('test_data/lrc_1year_sentiment_reddit.csv', sep=',')
-fear_and_greed = pd.read_csv('test_data/fng_prepped.csv', sep=',')
-
-lrc_price_data_numeric = pd.to_numeric(lrc_pricedata['rate_open'])
-btc_price_data_numeric = pd.to_numeric(btc_pricedata['rate_open'])
-reddit_sentiment_numeric = pd.to_numeric(reddit['Sentiment'])
-reddit_sentiment_amount_comments_numeric = pd.to_numeric(reddit['Sentiment_amount_comments'])
-reddit_sentiment_likes_numeric = pd.to_numeric(reddit['Sentiment_Likes'])
-tweets_sentiment_numeric = pd.to_numeric(tweets['Sentiment'])
-tweets_sentiment_followers_numeric = pd.to_numeric(tweets['Sentiment_Followers'])
-tweets_sentiment_likes_numeric = pd.to_numeric(tweets['Sentiment_Likes'])
-fear_and_greed_numeric = pd.to_numeric(fear_and_greed['Value'])
+from Testcases import create_test_cases
 
 def train_lstm(
     batch_train: int, 
@@ -31,122 +13,7 @@ def train_lstm(
     neurons: List[int], 
     dropout_rate: float) -> None:
     
-    lrcPriceDataScaler = DataScaler(dataset=lrc_price_data_numeric, name='Loopring Price Snapshots', interval=interval)
-    btcPriceDataScaler = DataScaler(dataset=btc_price_data_numeric, name='Bitcoin Price Snapshots', interval=interval)
-    redditSentimentDataScaler = DataScaler(dataset=reddit_sentiment_amount_comments_numeric, name='Reddit Sentiment', interval=interval)
-    tweetSentimentDataScaler = DataScaler(dataset=tweets_sentiment_followers_numeric, name='Twitter Sentiment', interval=interval)
-    fearAndGreedDataScaler = DataScaler(dataset=fear_and_greed_numeric, name='Fear and Greed Index', interval=interval)
-    
-    """
-    testCasesSingleLayer: List[TestDataSingle] = [
-        TestDataSingle(name='Price', neurons=128, dropout_rate=0, inputs=[lrcPriceDataScaler], interval=interval),
-        TestDataSingle(name='Price_Twitter', neurons=128, dropout_rate=0, inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], interval=interval),
-    ]
-
-    """
-        
-    testCasesMultiLayer: List[TestDataStacked] = [
-        TestDataStacked(
-            name="Price_Twitter", 
-            neurons=neurons,
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], 
-            interval=interval,
-            iteration=iteration), 
-            TestDataStacked(
-            name="Price_BTC", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, btcPriceDataScaler], 
-            interval=interval,
-            iteration=iteration),  
-        TestDataStacked(
-            name="Price_FNG", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
-            iteration=iteration),  
-        TestDataStacked(
-            name="Price_Reddit", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, redditSentimentDataScaler], 
-            interval=interval,
-            iteration=iteration),     
-        TestDataStacked(
-            name="Price_Twitter_Reddit", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler], 
-            interval=interval,
-            iteration=iteration),  
-        TestDataStacked(
-            name="Price_Twitter_BTC", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
-            iteration=iteration),  
-        TestDataStacked(
-            name="Price_Twitter_FNG", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
-            iteration=iteration),  
-        TestDataStacked(
-            name="Price_Twitter_Reddit_BTC", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
-            iteration=iteration),  
-        TestDataStacked(
-            name="Price_Twitter_Reddit_FNG", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler], 
-            interval=interval,
-            iteration=iteration),       
-        TestDataStacked(
-            name="Price_Twitter_Reddit_FNG_BTC", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
-            iteration=iteration),  
-        TestDataStacked(
-            name="Price_Reddit_FNG_BTC", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, redditSentimentDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
-            iteration=iteration),
-        TestDataStacked(
-            name="Price_Reddit_FNG", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, redditSentimentDataScaler], 
-            interval=interval,
-            iteration=iteration), 
-        TestDataStacked(
-            name="Price_Reddit_BTC", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, redditSentimentDataScaler, btcPriceDataScaler], 
-            interval=interval,
-            iteration=iteration), 
-        TestDataStacked(
-            name="Price_FNG_BTC", 
-            neurons=neurons, 
-            dropout_rate=dropout_rate, 
-            inputs=[lrcPriceDataScaler, fearAndGreedDataScaler, btcPriceDataScaler], 
-            interval=interval,
-            iteration=iteration),  
-        
-    ]
-    
+    #testCasesSingleLayer, testCasesMultiLayer, testCasesBidirectional = create_test_cases(dropout_rate=dropout_rate, interval=interval, iteration=iteration, neurons=neurons)
 
     def evaluate_single_layer_model(testData: TestDataSingle):
         print("\n\n\n-----------------------------------------------------------")
@@ -178,33 +45,96 @@ def train_lstm(
         model.predict(batch_size=batch_predict)
         model.showPlot()
         testData.saveResults(model.rmse, model.mse)
+        
+    lrc_pricedata = pd.read_csv('test_data/lrc_1year_price_snapshot.csv', sep=',')
+    btc_pricedata = pd.read_csv('test_data/btc_1year_coin_api.csv', sep=',')
+    tweets = pd.read_csv('test_data/lrc_1year_sentiment_twitter.csv', sep=',')
+    reddit = pd.read_csv('test_data/lrc_1year_sentiment_reddit.csv', sep=',')
+    fear_and_greed = pd.read_csv('test_data/fng_prepped.csv', sep=',')
 
+    lrc_price_data_numeric = pd.to_numeric(lrc_pricedata['rate_open'])
+    btc_price_data_numeric = pd.to_numeric(btc_pricedata['rate_open'])
+    reddit_sentiment_numeric = pd.to_numeric(reddit['Sentiment'])
+    reddit_sentiment_amount_comments_numeric = pd.to_numeric(reddit['Sentiment_amount_comments'])
+    reddit_sentiment_likes_numeric = pd.to_numeric(reddit['Sentiment_Likes'])
+    tweets_sentiment_numeric = pd.to_numeric(tweets['Sentiment'])
+    tweets_sentiment_followers_numeric = pd.to_numeric(tweets['Sentiment_Followers'])
+    tweets_sentiment_likes_numeric = pd.to_numeric(tweets['Sentiment_Likes'])
+    fear_and_greed_numeric = pd.to_numeric(fear_and_greed['Value'])
+    
+    lrcPriceDataScaler = DataScaler(dataset=lrc_price_data_numeric, name='Loopring Price Snapshots', interval=interval)
+    btcPriceDataScaler = DataScaler(dataset=btc_price_data_numeric, name='Bitcoin Price Snapshots', interval=interval)
+    redditSentimentDataScaler = DataScaler(dataset=reddit_sentiment_amount_comments_numeric, name='Reddit Sentiment', interval=interval)
+    tweetSentimentDataScaler = DataScaler(dataset=tweets_sentiment_followers_numeric, name='Twitter Sentiment', interval=interval)
+    fearAndGreedDataScaler = DataScaler(dataset=fear_and_greed_numeric, name='Fear and Greed Index', interval=interval)
+    
+        
+    testCasesSingleLayer = [
+        TestDataSingle(
+            name="Price_Twitter", 
+            neurons=128,
+            dropout_rate=dropout_rate, 
+            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], 
+            interval=interval,
+            iteration=iteration), 
+    ]
+
+    testCasesMultiLayer: List[TestDataStacked] = [
+        TestDataStacked(
+            name="Price_Twitter", 
+            neurons=neurons,
+            dropout_rate=dropout_rate, 
+            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], 
+            interval=interval,
+            iteration=iteration),  
+    ]
+    
+    testCasesBidirectional: List[TestDataStacked] = [
+        TestDataStacked(
+            name="Price_Twitter", 
+            neurons=neurons,
+            dropout_rate=dropout_rate, 
+            inputs=[lrcPriceDataScaler, tweetSentimentDataScaler], 
+            interval=interval,
+            iteration=iteration,
+            bidirectional=True), 
+    ]
+    
+    
+    for i in range(0, len(testCasesSingleLayer)):
+        testData = testCasesSingleLayer[i]
+        evaluate_single_layer_model(testData)
+        
     for i in range(0, len(testCasesMultiLayer)):
         testData = testCasesMultiLayer[i]      
         evaluate_stacked_layer_model(testData)
+    
+    for i in range(0, len(testCasesBidirectional)):
+        testData = testCasesBidirectional[i]      
+        evaluate_stacked_layer_model(testData)
+        
 
-neurons = [[256, 128, 64], [128, 64, 32], [256, 128], [128, 64], [64, 32]]
-batch_size_train = [78, 64, 61]
+
+neurons = [[128, 64, 32], [256, 128], [128, 64]]
+batch_size_train = 78
 batch_size_predict = 7
-intervals = [14, 24, 7]
+interval = 14
 iterations = 20
-dropout_rate = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
+dropout_rate = 0.05
 
 for iteration in range(0, iterations):
-    for z in range(0, len(intervals)):
-        for i in range(0, len(neurons)):
-            for j in range(0, len(dropout_rate)):
-                train_lstm(
-                    batch_size_train[z], 
-                    batch_size_predict, 
-                    intervals[z], 
-                    iteration, 
-                    neurons[i], 
-                    dropout_rate[j]
-                )
-                print("\n\n\n-----------------------------------------------------------")
-                print('Successfully completed iteration: {}'.format(iteration))
-                print("-----------------------------------------------------------\n\n\n")
+    for i in range(0, len(neurons)):
+        train_lstm(
+            batch_size_train, 
+            batch_size_predict, 
+            interval, 
+            iteration, 
+            neurons[i], 
+            dropout_rate
+        )
+        print("\n\n\n-----------------------------------------------------------")
+        print('Successfully completed iteration: {}'.format(iteration))
+        print("-----------------------------------------------------------\n\n\n")
 
 """
 find best model (single or layered)
