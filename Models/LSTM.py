@@ -1,11 +1,9 @@
-import yfinance as yf
 import pandas as pd
 from helper.DataScaler import DataScaler
 from helper.LSTM_Model import LSTM
 from typing import List
 from helper.TestData import TestDataSingle, TestDataStacked
-from itertools import chain, combinations, product
-from pprint import pprint
+
 """
 Data
 """
@@ -185,11 +183,11 @@ def train_lstm(
         testData = testCasesMultiLayer[i]      
         evaluate_stacked_layer_model(testData)
 
-neurons = [[512, 256, 128], [1024, 512, 256], [1024, 512], [512, 256], [256, 128]]
+neurons = [[256, 128, 64], [128, 64, 32], [256, 128], [128, 64], [64, 32]]
 batch_size_train = [78, 64, 61]
 batch_size_predict = 7
 intervals = [14, 24, 7]
-iterations = 1
+iterations = 20
 dropout_rate = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
 
 for iteration in range(0, iterations):

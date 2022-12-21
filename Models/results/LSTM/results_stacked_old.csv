@@ -1,0 +1,127 @@
+,name,features,neurons,layers,dropout_rate,interval,rmse,mse
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.05,14,0.015287034371709439,0.015130168824732237
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","512, 256, 128",3,0.05,14,0.0029664233109657438,0.002279733653843273
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","512, 256, 128",3,0.05,14,0.00749519128963121,0.007087748582187759
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.05,14,0.011829964040558387,0.01143641808009947
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","512, 256, 128",3,0.05,14,0.00781254129853218,0.0072636875275910034
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.05,14,0.008755684212069533,0.008442755686879608
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","512, 256, 128",3,0.05,14,0.00972123770046766,0.009366511852791507
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.05,14,0.0031776146468069427,0.0024525739353562933
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","512, 256, 128",3,0.05,14,0.006329793607482733,0.005009591118929674
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.05,14,0.011332334893930394,0.010713600249766801
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.05,14,0.00958403834893763,0.009179114768323102
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.05,14,0.021549282603587246,0.021272613157091266
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.05,14,0.02201876055362003,0.02168571786466126
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.05,14,0.0027798201054769,0.002047752524952891
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.1,14,0.002834957287744837,0.0019034888624995811
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","512, 256, 128",3,0.1,14,0.0035267231396640597,0.0029112611974475467
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","512, 256, 128",3,0.1,14,0.005844897947955843,0.005061700997003093
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.1,14,0.016033465851859788,0.015765288921548236
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","512, 256, 128",3,0.1,14,0.013213620517580347,0.012853449287867968
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.1,14,0.01399790558991994,0.013709265875037527
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","512, 256, 128",3,0.1,14,0.004731818674709799,0.0038325803470393876
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.1,14,0.007347529231610773,0.006841251158227889
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","512, 256, 128",3,0.1,14,0.015072605304354414,0.014518540284631357
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.1,14,0.008277875061482788,0.0072991624262020455
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.1,14,0.021342076603131477,0.021109214585753287
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.1,14,0.002435391664447139,0.0016657403388632033
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.1,14,0.005660815772432585,0.005116927708306657
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.1,14,0.02663989361067614,0.026486830280404255
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.15,14,0.005529269189419433,0.005015383821613139
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","512, 256, 128",3,0.15,14,0.005200226131958709,0.004729125438056508
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","512, 256, 128",3,0.15,14,0.012749377952880359,0.0123169831248489
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.15,14,0.014638799431084367,0.014379505014002416
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","512, 256, 128",3,0.15,14,0.0043791297873400975,0.003806151292275988
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.15,14,0.004210858124973203,0.0033203164855976643
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","512, 256, 128",3,0.15,14,0.006827811627514512,0.006267622579257239
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.15,14,0.00471763392310893,0.0038360678699555463
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","512, 256, 128",3,0.15,14,0.004970145306667433,0.004146202909076082
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.15,14,0.017102670616606745,0.016630726915776287
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.15,14,0.019467493108007244,0.018965113762540974
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.15,14,0.003450047151291911,0.002558356890431227
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.15,14,0.008631244662994529,0.008238726633177642
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.15,14,0.003467249651740535,0.00286119952806117
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.2,14,0.006996819327256498,0.0065706414913941314
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","512, 256, 128",3,0.2,14,0.016730033622076243,0.01639157528743424
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","512, 256, 128",3,0.2,14,0.0033460111218466563,0.00226162559426023
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.2,14,0.022564880615379847,0.02232950126318508
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","512, 256, 128",3,0.2,14,0.014111787125054877,0.01381293926928944
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.2,14,0.011105168193039692,0.010658850831556476
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","512, 256, 128",3,0.2,14,0.011232436152660999,0.01080438157352486
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.2,14,0.013305570877705982,0.012883505180553121
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","512, 256, 128",3,0.2,14,0.007528740966508255,0.0066615032119745725
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.2,14,0.004416425695539378,0.0033692705609830293
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.2,14,0.008951402068474805,0.008099145863230324
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.2,14,0.002905150593564444,0.0021118046776504988
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.2,14,0.005211022070857927,0.004586322531541702
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.2,14,0.004210056635919665,0.003405908868593533
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.25,14,0.00901094729388585,0.008614143702432773
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","512, 256, 128",3,0.25,14,0.013972038251278652,0.013551723585729447
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","512, 256, 128",3,0.25,14,0.0029358179475556558,0.0021166039340650444
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.25,14,0.01023190479958558,0.009776803300355453
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","512, 256, 128",3,0.25,14,0.0077563737781476795,0.007281328153778343
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.25,14,0.012375290874315858,0.01194666997963367
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","512, 256, 128",3,0.25,14,0.02700840708941336,0.026752195358028908
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.25,14,0.004401602128728524,0.003453463630060203
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","512, 256, 128",3,0.25,14,0.007461703358326113,0.006742171319300913
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.25,14,0.016962186811151452,0.016429747855142493
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.25,14,0.004554866189439213,0.003423589916443457
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.25,14,0.009391637793864009,0.008709909090531284
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.25,14,0.021821848770986786,0.021563512895114406
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.25,14,0.013892046493984051,0.013450186204003133
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","512, 256, 128",3,0.3,14,0.015934810538743176,0.01571927516815524
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","512, 256, 128",3,0.3,14,0.015730581382673907,0.015501582806298526
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","512, 256, 128",3,0.3,14,0.004008033867131244,0.0030655397198098458
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.3,14,0.0030849894714018258,0.002327202273851159
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","512, 256, 128",3,0.3,14,0.018078935846002574,0.01767635521738523
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.3,14,0.0320258619515734,0.03187232845660745
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","512, 256, 128",3,0.3,14,0.004708121734575131,0.0034422112922421694
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.3,14,0.010003038935918859,0.009271179137823613
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","512, 256, 128",3,0.3,14,0.01754382837208531,0.01716504219755124
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.3,14,0.014937077594543536,0.014177064681563128
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.3,14,0.005945736606421176,0.0050535336837813725
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","512, 256, 128",3,0.3,14,0.01702673567252664,0.01671541355047911
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","512, 256, 128",3,0.3,14,0.016801971820904503,0.016420499173608258
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","512, 256, 128",3,0.3,14,0.0074416245798130595,0.006860156497922783
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","1024, 512, 256",3,0.05,14,0.006064160705899071,0.005442134188749178
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","1024, 512, 256",3,0.05,14,0.019834743905048694,0.019678337688813146
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","1024, 512, 256",3,0.05,14,0.004336608351675379,0.0034969830620000483
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","1024, 512, 256",3,0.05,14,0.009423654245001526,0.00901725625379546
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","1024, 512, 256",3,0.05,14,0.009327468324549844,0.008678807337180974
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.05,14,0.014525545564035834,0.014193732379577094
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","1024, 512, 256",3,0.05,14,0.0037082871009242843,0.0030469001334574378
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.05,14,0.0037923629295490207,0.0031451614513323786
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","1024, 512, 256",3,0.05,14,0.005111612147192962,0.004102243073656811
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.05,14,0.006446047370916533,0.005310207609286285
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.05,14,0.01040783106541551,0.01003407952368877
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","1024, 512, 256",3,0.05,14,0.0051284867521608005,0.004463374789475893
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.05,14,0.0030390175155699363,0.0023012815378616294
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.05,14,0.014576769846234874,0.01425873518684327
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","1024, 512, 256",3,0.1,14,0.028733799093799417,0.028588827119723697
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","1024, 512, 256",3,0.1,14,0.011670810398778618,0.011416056358139937
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","1024, 512, 256",3,0.1,14,0.003854588403047389,0.0031750594999183685
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","1024, 512, 256",3,0.1,14,0.011563483083875574,0.010566626838688227
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","1024, 512, 256",3,0.1,14,0.014594288277454265,0.013327906013691567
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.1,14,0.009030157838882946,0.008496186070531654
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","1024, 512, 256",3,0.1,14,0.009172417508674506,0.008282899796614982
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.1,14,0.010102573440748677,0.009617940022012241
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","1024, 512, 256",3,0.1,14,0.025892119532942463,0.0257120099390625
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.1,14,0.009064677093782624,0.008482285296472838
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.1,14,0.004106220625602006,0.003332947795504954
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","1024, 512, 256",3,0.1,14,0.006447986484228128,0.005309952714235854
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.1,14,0.017380688985006717,0.017126829554100897
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.1,14,0.009227063531864569,0.008858713482731435
+0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","1024, 512, 256",3,0.15,14,0.007699124501230955,0.0070424766367320445
+0,Price_BTC,"Loopring Price Snapshots, Bitcoin Price Snapshots","1024, 512, 256",3,0.15,14,0.00871158532714919,0.008356561008165921
+0,Price_FNG,"Loopring Price Snapshots, Fear and Greed Index","1024, 512, 256",3,0.15,14,0.006905717310917314,0.005857202466089214
+0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","1024, 512, 256",3,0.15,14,0.003696877281936628,0.0027860320492554412
+0,Price_Twitter_Reddit,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment","1024, 512, 256",3,0.15,14,0.00523047779713731,0.004371322264219787
+0,Price_Twitter_BTC,"Loopring Price Snapshots, Twitter Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.15,14,0.02204077483952531,0.021863371752964024
+0,Price_Twitter_FNG,"Loopring Price Snapshots, Twitter Sentiment, Fear and Greed Index","1024, 512, 256",3,0.15,14,0.006970894668669621,0.006283404830774684
+0,Price_Twitter_Reddit_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.15,14,0.010297684096557643,0.009670933583497927
+0,Price_Twitter_Reddit_FNG,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index","1024, 512, 256",3,0.15,14,0.0062071419526577186,0.005109172138109103
+0,Price_Twitter_Reddit_FNG_BTC,"Loopring Price Snapshots, Twitter Sentiment, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.15,14,0.011049603847845398,0.010455368798635461
+0,Price_Reddit_FNG_BTC,"Loopring Price Snapshots, Reddit Sentiment, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.15,14,0.017753998245192963,0.017425982167808836
+0,Price_Reddit_FNG,"Loopring Price Snapshots, Reddit Sentiment","1024, 512, 256",3,0.15,14,0.004333519272934047,0.0037132401466613103
+0,Price_Reddit_BTC,"Loopring Price Snapshots, Reddit Sentiment, Bitcoin Price Snapshots","1024, 512, 256",3,0.15,14,0.003419844449188643,0.0025280475240126005
+0,Price_FNG_BTC,"Loopring Price Snapshots, Fear and Greed Index, Bitcoin Price Snapshots","1024, 512, 256",3,0.15,14,0.0036445087272182625,0.002858624094207468

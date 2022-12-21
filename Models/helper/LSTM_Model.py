@@ -10,7 +10,6 @@ import keras
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
 from helper.TestData import TestData
-import os
 
 earlystopping = callbacks.EarlyStopping(monitor ="loss", 
                                         mode ="min", patience = 3, 
