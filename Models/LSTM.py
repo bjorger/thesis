@@ -39,12 +39,14 @@ def evaluate_stacked_layer_model(testData: TestDataStacked):
     model.showPlot()
     testData.saveResults(model.rmse, model.mse)
     
-neurons = [[128, 64, 32], [128, 64], [64, 32]]
+#neurons = [[128, 64, 32], [128, 64], [64, 32]]
+neurons = [256, 128, 64]
 interval = 14
-iterations = 20
+iterations = 5
 dropout_rate = 0.05
 
 for iteration in range(0, iterations):
+    """
     for i in range(0, len(neurons)):
         testCasesMultiLayer, testCasesBidirectional = create_test_cases_stacked(neurons[i], iteration)
         
@@ -55,12 +57,13 @@ for iteration in range(0, iterations):
         for i in range(0, len(testCasesBidirectional)):
             testData = testCasesBidirectional[i]      
             evaluate_stacked_layer_model(testData)
-            
-    testCasesSingleLayer = create_test_cases_single(iteration)
+    """
+    for i in range(0, len(neurons)):
+        testCasesSingleLayer = create_test_cases_single(iteration, neurons[i])
     
-    for i in range(0, len(testCasesSingleLayer)):
-        testData = testCasesSingleLayer[i]
-        evaluate_single_layer_model(testData)
+        for i in range(0, len(testCasesSingleLayer)):
+            testData = testCasesSingleLayer[i]
+            evaluate_single_layer_model(testData)
         
     print("\n\n\n-----------------------------------------------------------")
     print('Successfully completed iteration: {}'.format(iteration))

@@ -1,7 +1,7 @@
 ,name,features,neurons,layers,dropout_rate,rmse,mse,architecture
 0,Price_Twitter,"Loopring Price Snapshots, Twitter Sentiment","128, 64, 32",3,0.05,0.00335226397304495,0.00249562959814994,bidirectional
 0,Price_Twitter_Followers,"Loopring Price Snapshots, Twitter Sentiment Followers","128, 64, 32",3,0.05,0.00334354487538646,0.00244261283830142,bidirectional
-0,Price_Twitter_Followers,"Loopring Price Snapshots, Twitter Sentiment Likes","128, 64, 32",3,0.05,0.00288552521561814,0.00211924281207769,bidirectional
+0,Price_Twitter_Likes,"Loopring Price Snapshots, Twitter Sentiment Likes","128, 64, 32",3,0.05,0.00288552521561814,0.00211924281207769,bidirectional
 0,Price_Reddit,"Loopring Price Snapshots, Reddit Sentiment","128, 64, 32",3,0.05,0.0215453956155671,0.0212334030729342,bidirectional
 0,Price_Reddit_Likes,"Loopring Price Snapshots, Reddit Sentiment Likes","128, 64, 32",3,0.05,0.00592598838725546,0.005375496093605,bidirectional
 0,Price_Reddit_Comments,"Loopring Price Snapshots, Reddit Sentiment Comments","128, 64, 32",3,0.05,0.00383992440148985,0.00297715654725075,bidirectional

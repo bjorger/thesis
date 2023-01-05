@@ -231,9 +231,8 @@ def create_test_cases_stacked(neurons, iteration):
     
     return testCasesMultiLayer, testCasesBidirectional
     
-def create_test_cases_single(iteration):
+def create_test_cases_single(iteration, neurons):
     dropout_rate = 0.05    
-    neurons = 128
     
     testCasesSingleLayer: List[TestDataSingle] = [
         TestDataSingle(
